@@ -10,7 +10,11 @@ export class CalendarComponent implements OnInit {
   numberDays: number;
   startDate: string;
   countryCode: string;
-  
+  startGrid: string;
+
+  go(){
+    this.startGrid="3/3";
+  }
 
    
 
