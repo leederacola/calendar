@@ -14,22 +14,118 @@ export class CalendarComponent implements OnInit {
   date = new Date();
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+  dateArray: Array<Date> = [];
+
+
+
+  fillDateArray() {
+        //add first 
+        this.dateArray[0] = (this.date);
+        console.log("this date = "+ this.date);
+        //set month var for while check
+        let m = this.date.getMonth();
+        console.log("month = " + m);
+        // new up next date
+        let d = new Date;
+        d.setDate(this.date.getDate()+1);
+        console.log("new date = " + d);
+        // add next date
+        if(d.getMonth() == m){
+          this.dateArray[1] = d;
+        }
+        else{
+          console.log("new month");
+
+        }
+        console.log(this.dateArray);
+      }
+
+  //   //itterate on start date
+  //   newD.setDate(this.date.getDate() + 1);
+  //   //add dates if month aint change
+  //   for(let n =0; n < 5; n++){
+
+    
+  //   while(newD.getMonth() == m) {
+  //     //add newD to array
+  //     let i = 1;
+  //     this.dateArray[i] = newD;
+  //     i ++;
+  //     newD.setDate(newD.getDate() + 1);
+  //   }
+  // }
+  //   
+      createCalendar(){
+        let dayRemaining = this.numberDays;
+
+        let m = this.date.getMonth();
+        let dow = this.date.getDay();
+        let d = this.date.getDate();
+        let remainingMonth = (this.monthDays(m)-d); //days in month - date
+        }
+
+        createMonthTitle(){
+          let m = this.date.getMonth();
+          var monthHeader = document.createElement("h1");
+          var t = document.createTextNode(this.months[m]);
+          monthHeader.appendChild(t);
+          document.body.appendChild(monthHeader);
+
+        }
+        createDaysHeader(){
+          var grid = document.createElement("div");
+          grid.classList.add("grid-container");
+          //days of week heading
+          var days = new Array("Sun","Mon","Tues","Wed","thurs","Fri","Sat");
+          //make 7 divs sun-sat
+          for(let d of days){
+            var div = document.createElement("div");
+            var t = document.createTextNode(d);
+            div.appendChild(t);
+            grid.appendChild(div); 
+            document.body.appendChild(grid); 
+          }
+        }
+      
+        
+
+        
+
+
+
+
+
+
+
+
 
 
   loopCt(i: number) {
-     return new Array(this.numberDays);
+    return new Array(this.numberDays);
+  }
+
+  monthDays(i:number){
+    if(i == 1){
+      return 28;
+    }  
+    if(i == 3 || i == 5 || i == 8 || i == 10){
+      return 30;
+    }
+    else{
+      return 31;
+    }
   }
 
 
-  initDate(startDate){
+  initDate(startDate) {
     let str = this.startDate;
-    let m = parseInt(str.substring(8,10));
-    let d = parseInt(str.substring(5,7))-1;
-    let y= parseInt(str.substring(0,4));
-    console.log("d/m/y = " + d +" "+" " + m +" " + y );
-    this.date = new Date(y,d,m);
+    let m = parseInt(str.substring(8, 10));
+    let d = parseInt(str.substring(5, 7)) - 1;
+    let y = parseInt(str.substring(0, 4));
+    console.log("d/m/y = " + d + " " + " " + m + " " + y);
+    this.date = new Date(y, d, m);
     console.log("Date object this.date: " + this.date);
-    let n = this.date.getDay() + 1; 
+    let n = this.date.getDay() + 1;
     this.startGrid = n + "/" + n;
     console.log(this.startGrid);
   }

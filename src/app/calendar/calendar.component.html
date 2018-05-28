@@ -1,26 +1,13 @@
 <div class='container'>
-    <h1> css grid</h1>
+    <h1>Calendar</h1>
 
 
 
     <div class="grid-container">
-        <div class="item1" [ngStyle]="{ 'grid-column' : (startGrid) }">1</div>
-        <div *ngFor='let in of loopCt(); let i = index'>{{i}}</div>
+        <div class="item1" [ngStyle]="{ 'grid-column' : (startGrid) }">0</div>
+        <div *ngFor='let in of loopCt(); let i = index'>{{i+1}}</div>
 
-        <!-- <div class="item2">2</div>
-        <div class="item3">3</div>  
-        <div class="item4">4</div>
-        <div class="item5">5</div>
-        <div class="item6">6</div>
-        <div class="item7">7</div>
-        <div class="item8">8</div>  
-        <div class="item9">9</div>
-        <div class="item10">10</div>
-        <div class="item11">11</div>
-        <div class="item12">12</div>
-        <div class="item13">13</div>
-        <div class="item14">14</div>
-        <div class="item15">15</div> -->
+
       </div>
       <div id="insertBefore"></div>
   <form class="form">
@@ -41,8 +28,12 @@
   </form>
 
 
-  <button mat-raised-button color="primary" (click)="go()">GO! Make Calendar!</button>
+  <button mat-raised-button color="primary" (click)="go()"># of days</button>
   <button mat-raised-button color="primary" (click)="initDate()">initDate</button>
+  <button mat-raised-button color="primary" (click)="fillDateArray()">date array</button>
+  <button mat-raised-button color="primary" (click)="createDaysHeader()">create day of week header</button>
+  <button mat-raised-button color="primary" (click)="createMonthTitle()">create Month Title</button>
+
 
 </div>
 
