@@ -7,7 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
+  numberDays: number;
+  startDate: string;
+  countryCode: string;
+  
+
+   
+
+
+
   constructor() { }
+
+
+
 
   ngOnInit() {
   }

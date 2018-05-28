@@ -1,3 +1,47 @@
-<p>
-  calendar works!
-</p>
+<div class='container'>
+    <h1> css grid</h1>
+
+
+
+    <div class="grid-container">
+        <div class="item1" [ngStyle]="{ 'grid-column' : (startGrid) }">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>  
+        <div class="item4">4</div>
+        <div class="item5">5</div>
+        <div class="item6">6</div>
+        <div class="item7">7</div>
+        <div class="item8">8</div>  
+        <div class="item9">9</div>
+        <div class="item10">10</div>
+        <div class="item11">11</div>
+        <div class="item12">12</div>
+        <div class="item13">13</div>
+        <div class="item14">14</div>
+        <div class="item15">15</div>
+      </div>
+  <form class="form">
+
+    <mat-form-field>
+      <input [(ngModel)]="numberDays" name="numberDays" matInput type="number" placeholder="How Many days?">
+    </mat-form-field>
+  </form>
+  <form class="form">
+    <mat-form-field>
+      <input [(ngModel)]="startDate" name="startDate" matInput type="date" placeholder="Starting Date">
+    </mat-form-field>
+  </form>
+  <form class="form">
+    <mat-form-field>
+      <input [(ngModel)]="countryCode" name="counrtyCode" matInput type="text" placeholder="Country Code">
+    </mat-form-field>
+  </form>
+
+
+  <button mat-raised-button color="primary" (click)="go()">GO! Make Calendar!</button>
+
+</div>
+
+<h5>{{startDate}}</h5>
+<h5>{{numberDays}}</h5>
+<h5>{{endDate}}</h5>
