@@ -8,14 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class CalendarComponent implements OnInit {
 
   numberDays: number;
+  remainingDays: number=12;
   startDate: string;
   countryCode: string;
   startGrid: string;
   date = new Date();
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
   dateArray: Array<Date> = [];
 
+  currentDay:number;
 
 
   fillDateArray() {
@@ -35,7 +36,6 @@ export class CalendarComponent implements OnInit {
         }
         else{
           console.log("new month");
-
         }
         console.log(this.dateArray);
       }
@@ -56,12 +56,17 @@ export class CalendarComponent implements OnInit {
   // }
   //   
       createCalendar(){
-        let dayRemaining = this.numberDays;
+        let daysRemaining = this.numberDays;
 
         let m = this.date.getMonth();
         let dow = this.date.getDay();
         let d = this.date.getDate();
-        let remainingMonth = (this.monthDays(m)-d); //days in month - date
+        this.currentDay=d;
+        let remainingMonth = (this.monthDays(m)-d); // divs to create for current month
+        this.createMonthTitle();
+        this.createDaysHeader();
+        this.createMonthGrid(this.monthDays(m),dow);
+
         }
 
         createMonthTitle(){
@@ -69,23 +74,49 @@ export class CalendarComponent implements OnInit {
           var monthHeader = document.createElement("h1");
           var t = document.createTextNode(this.months[m]);
           monthHeader.appendChild(t);
-          document.body.appendChild(monthHeader);
-
+          document.getElementById("start").appendChild(monthHeader);
         }
+        
         createDaysHeader(){
           var grid = document.createElement("div");
           grid.classList.add("grid-container");
           //days of week heading
-          var days = new Array("Sun","Mon","Tues","Wed","thurs","Fri","Sat");
+          var days = new Array("SU","MO","TU","WE","TH","FR","SA");
           //make 7 divs sun-sat
           for(let d of days){
             var div = document.createElement("div");
             var t = document.createTextNode(d);
             div.appendChild(t);
-            grid.appendChild(div); 
-            document.body.appendChild(grid); 
+            grid.appendChild(div);
+            document.getElementById("start").appendChild(grid);            
           }
         }
+
+        createMonthGrid(m:any, s:any){
+          var grid = document.createElement("div");
+          grid.classList.add("grid-container");
+          //start div
+          var div = document.createElement("div");
+          var t = document.createTextNode("#");
+          //div.classList.add("item"+s);
+          let str = (s+1)+"/"+(s+1);
+          console.log(s);
+          div.setAttribute("style", "grid-column: "+ str);
+          div.appendChild(t);
+          grid.appendChild(div);
+          for(let i = 0; i < m; i++ ){
+            var div = document.createElement("div");
+            var t = document.createTextNode("#");
+            div.appendChild(t);
+            grid.appendChild(div);    
+            document.getElementById("start").appendChild(grid);                  
+          }
+          console.log("monthgrid");
+        }
+
+
+
+   
       
         
 

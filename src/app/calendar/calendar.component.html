@@ -1,14 +1,14 @@
-<div class='container'>
+<div id="start" class='container'>
     <h1>Calendar</h1>
 
 
 
-    <div class="grid-container">
+    <!-- <<div class="grid-container">
         <div class="item1" [ngStyle]="{ 'grid-column' : (startGrid) }">0</div>
-        <div *ngFor='let in of loopCt(); let i = index'>{{i+1}}</div>
+        <div *ngFor='let in of loopCt(); let i = index'>{{i+1}}</div> -->
 
 
-      </div>
+      
       <div id="insertBefore"></div>
   <form class="form">
 
@@ -33,6 +33,8 @@
   <button mat-raised-button color="primary" (click)="fillDateArray()">date array</button>
   <button mat-raised-button color="primary" (click)="createDaysHeader()">create day of week header</button>
   <button mat-raised-button color="primary" (click)="createMonthTitle()">create Month Title</button>
+  <button mat-raised-button color="primary" (click)="createMonthGrid()">create Month grid</button>
+  <button mat-raised-button color="primary" (click)="createCalendar()">create Calendar</button>
 
 
 </div>
