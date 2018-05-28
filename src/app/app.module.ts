@@ -11,10 +11,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatCardModule} from '@angular/material/card'
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HeaderComponent } from './header/header.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,BrowserAnimationsModule,
