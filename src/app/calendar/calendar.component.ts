@@ -19,53 +19,21 @@ export class CalendarComponent implements OnInit {
   currentDay:number;
 
 
-  fillDateArray() {
-        //add first 
-        this.dateArray[0] = (this.date);
-        console.log("this date = "+ this.date);
-        //set month var for while check
-        let m = this.date.getMonth();
-        console.log("month = " + m);
-        // new up next date
-        let d = new Date;
-        d.setDate(this.date.getDate()+1);
-        console.log("new date = " + d);
-        // add next date
-        if(d.getMonth() == m){
-          this.dateArray[1] = d;
-        }
-        else{
-          console.log("new month");
-        }
-        console.log(this.dateArray);
-      }
-
-  //   //itterate on start date
-  //   newD.setDate(this.date.getDate() + 1);
-  //   //add dates if month aint change
-  //   for(let n =0; n < 5; n++){
-
-    
-  //   while(newD.getMonth() == m) {
-  //     //add newD to array
-  //     let i = 1;
-  //     this.dateArray[i] = newD;
-  //     i ++;
-  //     newD.setDate(newD.getDate() + 1);
-  //   }
-  // }
-  //   
       createCalendar(){
-        let daysRemaining = this.numberDays;
+        while(this.numberDays > 0){
 
-        let m = this.date.getMonth();
-        let dow = this.date.getDay();
-        let d = this.date.getDate();
-        this.currentDay=d;
-        let remainingMonth = (this.monthDays(m)-d); // divs to create for current month
-        this.createMonthTitle();
-        this.createDaysHeader();
-        this.createMonthGrid(this.monthDays(m),dow);
+          let m = this.date.getMonth();
+          let dow = this.date.getDay();
+          let d = this.date.getDate();
+          this.currentDay=d;
+          let remainingMonth = (this.monthDays(m)-d); // divs to create for current month
+          this.createMonthTitle();
+          this.createDaysHeader();
+          this.createMonthGrid(remainingMonth,dow);
+
+        }
+
+        
 
         }
 
@@ -88,19 +56,20 @@ export class CalendarComponent implements OnInit {
             var t = document.createTextNode(d);
             div.appendChild(t);
             grid.appendChild(div);
-            document.getElementById("start").appendChild(grid);            
+            document.getElementById("start").appendChild(grid);   
+                             
           }
         }
 
-        createMonthGrid(m:any, s:any){
+        createMonthGrid(m:any, dow:any){
           var grid = document.createElement("div");
           grid.classList.add("grid-container");
           //start div
           var div = document.createElement("div");
           var t = document.createTextNode("#");
           //div.classList.add("item"+s);
-          let str = (s+1)+"/"+(s+1);
-          console.log(s);
+          let str = (dow+1)+"/"+(dow+1);
+          console.log(dow);
           div.setAttribute("style", "grid-column: "+ str);
           div.appendChild(t);
           grid.appendChild(div);
@@ -109,9 +78,14 @@ export class CalendarComponent implements OnInit {
             var t = document.createTextNode("#");
             div.appendChild(t);
             grid.appendChild(div);    
-            document.getElementById("start").appendChild(grid);                  
+            document.getElementById("start").appendChild(grid);
+            this.numberDays --;
+            console.log(this.numberDays);
           }
-          console.log("monthgrid");
+          this.date.getDay() + 1;
+          
+          
+          console.log("set date "+ this.date.getDate() );
         }
 
 
