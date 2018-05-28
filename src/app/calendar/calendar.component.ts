@@ -20,7 +20,7 @@ export class CalendarComponent implements OnInit {
 
 
       createCalendar(){
-        while(this.numberDays > 0){
+        
 
           let m = this.date.getMonth();
           let dow = this.date.getDay();
@@ -30,10 +30,6 @@ export class CalendarComponent implements OnInit {
           this.createMonthTitle();
           this.createDaysHeader();
           this.createMonthGrid(remainingMonth,dow);
-
-        }
-
-        
 
         }
 
@@ -62,6 +58,7 @@ export class CalendarComponent implements OnInit {
         }
 
         createMonthGrid(m:any, dow:any){
+          
           var grid = document.createElement("div");
           grid.classList.add("grid-container");
           //start div
@@ -69,7 +66,6 @@ export class CalendarComponent implements OnInit {
           var t = document.createTextNode("#");
           //div.classList.add("item"+s);
           let str = (dow+1)+"/"+(dow+1);
-          console.log(dow);
           div.setAttribute("style", "grid-column: "+ str);
           div.appendChild(t);
           grid.appendChild(div);
@@ -79,13 +75,12 @@ export class CalendarComponent implements OnInit {
             div.appendChild(t);
             grid.appendChild(div);    
             document.getElementById("start").appendChild(grid);
-            this.numberDays --;
+            
+            
             console.log(this.numberDays);
-          }
-          this.date.getDay() + 1;
-          
-          
-          console.log("set date "+ this.date.getDate() );
+            this.date.setDate(this.date.getDate()+5);           
+          }   
+          console.log("date at end of month loop"+ this.date );
         }
 
 
