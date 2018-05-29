@@ -15,8 +15,54 @@ export class CalendarComponent implements OnInit {
   date = new Date();
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   dateArray: Array<Date> = [];
-
   numberDays: number;
+
+  makeTheCalendar(){
+    let d: Date = new Date(); 
+    d = this.date; // initial user input
+    let remaining = this.numberDays;
+    let m = -1;
+
+    while( remaining > 0 ){
+      console.log("start date: " + d.getFullYear());
+      console.log("remaining: " + remaining);
+
+      let div = document.createElement("div");
+      let text = document.createTextNode(d.getDate().toString()); // add date to div
+      
+      if( d.getMonth() != m ){
+        m = d.getMonth();
+        //make header 
+        let header = document.createElement("h1");
+        let text = document.createTextNode(this.months[d.getMonth()]);
+        header.appendChild(text);
+        document.getElementById("start").appendChild(header);
+        //make css grid
+        let grid = document.createElement("div");
+        grid.classList.add("grid-container");
+        document.getElementById("start").appendChild(grid);
+        // make day of week heading
+        this.createDaysHeader();
+
+        // new month = new start location
+        let str = (d.getDay() + 1) + "/" + (d.getDay() + 1); //css grid positioning grid-column: "3/3" = start day tuesday
+        div.setAttribute("style", "grid-column: " + str);       
+      }//end new month if
+
+      //check for weekend
+      if(d.getDay() == 0 || d.getDay() == 6){
+        div.classList.add("we"); 
+      }
+      //finally add div
+      document.getElementById("start").appendChild(div);
+
+      // book keeping
+      d.setDate( d.getDate() + 1 ); //increment date
+      remaining --; 
+      console.log("end date: " + d);
+      console.log("remaining: " + remaining);
+    } //end while
+  }
  
 
 
@@ -82,6 +128,7 @@ export class CalendarComponent implements OnInit {
     //make 7 divs sun-sat
     for (let d of days) {
       var div = document.createElement("div");
+      div.classList.add("header");
       var t = document.createTextNode(d);
       div.appendChild(t);
       grid.appendChild(div);
@@ -109,7 +156,7 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  initDate(startDate) {
+  initDate() {
     let str = this.startDate;
     let m = parseInt(str.substring(8, 10));
     let d = parseInt(str.substring(5, 7)) - 1;
@@ -119,7 +166,8 @@ export class CalendarComponent implements OnInit {
     //console.log("Date object this.date: " + this.date);
     let n = this.date.getDay() + 1;
     this.startGrid = n + "/" + n;
-    //console.log(this.startGrid);
+    console.log("input (start date): " + this.startDate );
+    console.log("initDate(): " + this.date);
   }
 
 
