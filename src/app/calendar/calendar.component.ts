@@ -61,6 +61,9 @@ export class CalendarComponent implements OnInit {
       if(d.getDay() == 0 || d.getDay() == 6){
         div.classList.add("we"); 
       }
+      else{
+        div.classList.add("wd");
+      }
       //finally add div
       var elems = document.querySelectorAll(".grid-container");
       let len = elems.length;

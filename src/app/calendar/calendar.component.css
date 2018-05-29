@@ -1,14 +1,18 @@
-.grid-container {
+/* .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     grid-gap: 10px;
     background-color: rgb(97, 98, 99);
     padding: 10px;
   }
+
+
   .grid-container > div {
     background-color: rgba(109, 230, 149, 0.8);
     text-align: center;
     padding: 20px 0;
     font-size: 30px;
-  }
+  } */
+
+
   

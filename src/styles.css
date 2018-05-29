@@ -10,12 +10,37 @@ body{
     background-color: rgb(97, 98, 99);
     padding: 10px;
   }
-  .grid-container > div {
+  /* .grid-container > div {
     background-color: rgba(109, 230, 149, 0.8);
     text-align: center;
     padding: 20px 0;
     font-size: 30px;
   }
-  /* .item1 {
-    grid-column: 1 / 1;
+
+  .we.grid-container > div {
+    background-color: rgba(234, 240, 151, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
   } */
+
+.header{
+  background-color: rgba(250, 250, 250, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 20px;
+
+}
+.wd{
+  background-color: rgba(151, 243, 182, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+
+}
+  .we{
+    background-color: rgba(229, 235, 146, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
