@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  numberDays: number;
-  remainingDays: number=12;
+
+  remainingDays: number;
   startDate: string;
   countryCode: string;
   startGrid: string;
@@ -16,87 +16,79 @@ export class CalendarComponent implements OnInit {
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   dateArray: Array<Date> = [];
 
-  currentDay:number;
-
-
-      createCalendar(){
-        
-
-          let m = this.date.getMonth();
-          let dow = this.date.getDay();
-          let d = this.date.getDate();
-          this.currentDay=d;
-          let remainingMonth = (this.monthDays(m)-d); // divs to create for current month
-          this.createMonthTitle();
-          this.createDaysHeader();
-          this.createMonthGrid(remainingMonth,dow);
-
-        }
-
-        createMonthTitle(){
-          let m = this.date.getMonth();
-          var monthHeader = document.createElement("h1");
-          var t = document.createTextNode(this.months[m]);
-          monthHeader.appendChild(t);
-          document.getElementById("start").appendChild(monthHeader);
-        }
-        
-        createDaysHeader(){
-          var grid = document.createElement("div");
-          grid.classList.add("grid-container");
-          //days of week heading
-          var days = new Array("SU","MO","TU","WE","TH","FR","SA");
-          //make 7 divs sun-sat
-          for(let d of days){
-            var div = document.createElement("div");
-            var t = document.createTextNode(d);
-            div.appendChild(t);
-            grid.appendChild(div);
-            document.getElementById("start").appendChild(grid);   
-                             
-          }
-        }
-
-        createMonthGrid(m:any, dow:any){
-          
-          var grid = document.createElement("div");
-          grid.classList.add("grid-container");
-          //start div
-          var div = document.createElement("div");
-          var t = document.createTextNode("#");
-          //div.classList.add("item"+s);
-          let str = (dow+1)+"/"+(dow+1);
-          div.setAttribute("style", "grid-column: "+ str);
-          div.appendChild(t);
-          grid.appendChild(div);
-          for(let i = 0; i < m; i++ ){
-            var div = document.createElement("div");
-            var t = document.createTextNode("#");
-            div.appendChild(t);
-            grid.appendChild(div);    
-            document.getElementById("start").appendChild(grid);
-            
-            
-            console.log(this.numberDays);
-            this.date.setDate(this.date.getDate()+5);           
-          }   
-          console.log("date at end of month loop"+ this.date );
-        }
+  numberDays: number;
+ 
 
 
 
-   
-      
-        
+  createCalendar() {
+    let m = this.date.getMonth();
+    let dow = this.date.getDay();
+    let d = this.date.getDate();
 
-        
+    let remainingMonth = (this.monthDays(m) - (d)); // divs to create for current month
+    this.createMonthTitle();
+    this.createDaysHeader();
+    this.createMonthGrid(m,d,dow);
+    console.log(this.date);
+  }
 
 
+  createMonthGrid(m:any, d:any, dow:any) {
+    let monthLoop = this.monthDays(m) - d; //number of divs rendered in month
+    console.log(monthLoop);
+    var grid = document.createElement("div");
+    grid.classList.add("grid-container");
+    for(let i = 0; i < monthLoop; i++ ){
+ 
+    //start div
+    var div = document.createElement("div");
+    var t = document.createTextNode(this.date.getDate().toString());
+    if (dow == 0 || dow == 6) {
+      div.classList.add("we");
+    }
+    let str = (dow + 1) + "/" + (dow + 1); //css grid positioning
+    div.setAttribute("style", "grid-column: " + str);
+    div.appendChild(t);
+    grid.appendChild(div);
+    this.date.setDate(this.date.getDate() + 1); //advance the date
+  }
 
 
+    // for(let i = 0; i < m; i++ ){
+    //   var div = document.createElement("div");
+    //   var t = document.createTextNode(sDate);
+    //   div.appendChild(t);
+    //   grid.appendChild(div);    
+    //   document.getElementById("start").appendChild(grid);
+    //   sDate++;                 
+    // }   
+  }
 
 
+  createMonthTitle() {
+    let m = this.date.getMonth();
+    var monthHeader = document.createElement("h1");
+    var t = document.createTextNode(this.months[m]);
+    monthHeader.appendChild(t);
+    document.getElementById("start").appendChild(monthHeader);
+  }
 
+  createDaysHeader() {
+    var grid = document.createElement("div");
+    grid.classList.add("grid-container");
+    //days of week heading
+    var days = new Array("SU", "MO", "TU", "WE", "TH", "FR", "SA");
+    //make 7 divs sun-sat
+    for (let d of days) {
+      var div = document.createElement("div");
+      var t = document.createTextNode(d);
+      div.appendChild(t);
+      grid.appendChild(div);
+      document.getElementById("start").appendChild(grid);
+
+    }
+  }
 
 
 
@@ -104,14 +96,14 @@ export class CalendarComponent implements OnInit {
     return new Array(this.numberDays);
   }
 
-  monthDays(i:number){
-    if(i == 1){
+  monthDays(i: number) {
+    if (i == 1) {
       return 28;
-    }  
-    if(i == 3 || i == 5 || i == 8 || i == 10){
+    }
+    if (i == 3 || i == 5 || i == 8 || i == 10) {
       return 30;
     }
-    else{
+    else {
       return 31;
     }
   }
@@ -122,12 +114,12 @@ export class CalendarComponent implements OnInit {
     let m = parseInt(str.substring(8, 10));
     let d = parseInt(str.substring(5, 7)) - 1;
     let y = parseInt(str.substring(0, 4));
-    console.log("d/m/y = " + d + " " + " " + m + " " + y);
+    //console.log("d/m/y = " + d + " " + " " + m + " " + y);
     this.date = new Date(y, d, m);
-    console.log("Date object this.date: " + this.date);
+    //console.log("Date object this.date: " + this.date);
     let n = this.date.getDay() + 1;
     this.startGrid = n + "/" + n;
-    console.log(this.startGrid);
+    //console.log(this.startGrid);
   }
 
 
