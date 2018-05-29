@@ -29,7 +29,12 @@ export class CalendarComponent implements OnInit {
 
       let div = document.createElement("div");
       let text = document.createTextNode(d.getDate().toString()); // add date to div
-      
+      div.appendChild(text);
+
+      let mGrid = document.createElement("div");
+      mGrid.classList.add("grid-container");
+
+
       if( d.getMonth() != m ){
         m = d.getMonth();
         //make header 
@@ -37,16 +42,19 @@ export class CalendarComponent implements OnInit {
         let text = document.createTextNode(this.months[d.getMonth()]);
         header.appendChild(text);
         document.getElementById("start").appendChild(header);
+        
+        // make day of week heading
+        this.createDaysHeader();
         //make css grid
         let grid = document.createElement("div");
         grid.classList.add("grid-container");
         document.getElementById("start").appendChild(grid);
-        // make day of week heading
-        this.createDaysHeader();
-
         // new month = new start location
         let str = (d.getDay() + 1) + "/" + (d.getDay() + 1); //css grid positioning grid-column: "3/3" = start day tuesday
-        div.setAttribute("style", "grid-column: " + str);       
+        div.setAttribute("style", "grid-column: " + str);
+        
+        
+        
       }//end new month if
 
       //check for weekend
@@ -54,8 +62,13 @@ export class CalendarComponent implements OnInit {
         div.classList.add("we"); 
       }
       //finally add div
-      document.getElementById("start").appendChild(div);
+      var elems = document.querySelectorAll(".grid-container");
+      let len = elems.length;
+      let lastelement = elems[len-1];
+      lastelement.appendChild(div);
 
+
+      
       // book keeping
       d.setDate( d.getDate() + 1 ); //increment date
       remaining --; 
