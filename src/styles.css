@@ -7,7 +7,7 @@ body{
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     grid-gap: 10px;
-    background-color: rgb(97, 98, 99);
+    background-color: rgb(109, 109, 109);
     padding: 10px;
   }
   /* .grid-container > div {
@@ -23,12 +23,14 @@ body{
     padding: 20px 0;
     font-size: 30px;
   } */
-
+button{
+  padding: 5px;
+}
 .header{
   background-color: rgba(250, 250, 250, 0.8);
   text-align: center;
   padding: 20px 0;
-  font-size: 20px;
+  font-size: 30px;
 
 }
 .wd{
